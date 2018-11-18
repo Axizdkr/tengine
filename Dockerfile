@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 
 ENV TENGINE_VERSION 2.2.3
@@ -59,7 +59,7 @@ RUN addgroup -S nginx \
                 zlib-dev \
                 linux-headers \
                 curl \
-                gnupg \
+                gnupg1 \
                 libxslt-dev \
                 gd-dev \
                 geoip-dev;
