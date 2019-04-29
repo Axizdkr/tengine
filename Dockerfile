@@ -108,7 +108,6 @@ RUN curl -L "http://tengine.taobao.org/download/tengine-$TENGINE_VERSION.tar.gz"
         && ln -sf /dev/stderr /var/log/nginx/error.log
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY example.com.conf /etc/nginx/conf.d/example.com.conf
 
 EXPOSE 80 443
 
