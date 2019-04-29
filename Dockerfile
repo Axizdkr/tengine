@@ -125,7 +125,6 @@ RUN     addgroup -S nginx \
         && ln -sf /dev/stderr /var/log/nginx/error.log
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY example.com.conf /etc/nginx/conf.d/example.com.conf
 
 EXPOSE 80 443
 
