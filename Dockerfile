@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.12
 
 
 ENV TENGINE_VERSION 2.3.2
