@@ -55,6 +55,7 @@ ENV CONFIG "\
         --add-module=modules/ngx_http_upstream_check_module \
         --add-module=modules/headers-more-nginx-module-0.33 \
 	--add-module=modules/ngx_http_upstream_session_sticky_module \
+        --add-module=modules/nginx-module-vts-0.1.18 \
         "
 RUN     addgroup -S nginx \
         && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
@@ -77,8 +78,11 @@ RUN     addgroup -S nginx \
         && rm tengine.tar.gz \
         && cd /usr/src/tengine-$TENGINE_VERSION \
         && curl -L "https://github.com/openresty/headers-more-nginx-module/archive/v0.33.tar.gz" -o more.tar.gz \
+        && curl -L "https://github.com/vozlt/nginx-module-vts/archive/v0.1.18.tar.gz" -o nginx-module-vts-0.1.18.tar.gz \
         && tar -zxC /usr/src/tengine-$TENGINE_VERSION/modules -f more.tar.gz \
+        && tar -zxC /usr/src/tengine-$TENGINE_VERSION/modules -f nginx-module-vts-0.1.18.tar.gz \
 	&& rm  more.tar.gz \
+        && rm  nginx-module-vts-0.1.18.tar.gz \
 	&& ls -l /usr/src/tengine-$TENGINE_VERSION/modules \
 	&& ./configure $CONFIG --with-debug \
         && make -j$(getconf _NPROCESSORS_ONLN) \
@@ -138,3 +142,4 @@ EXPOSE 80 443
 STOPSIGNAL SIGTERM
 
 CMD ["nginx", "-g", "daemon off;"]
+
