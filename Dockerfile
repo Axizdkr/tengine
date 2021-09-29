@@ -1,7 +1,7 @@
-FROM alpine:3.12
+FROM alpine:3.14
 
 
-ENV TENGINE_VERSION 2.3.2
+ENV TENGINE_VERSION 2.3.3
 
 # nginx: https://git.io/vSIyj
 
@@ -58,7 +58,7 @@ ENV CONFIG "\
         "
 RUN     addgroup -S nginx \
         && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
-        && addgroup -g 82 -S www-data && adduser -u 82 -D -S -G www-data www-data \
+        && adduser -u 82 -D -S -G www-data www-data \
         && apk add --no-cache --virtual .build-deps \
                 gcc \
                 libc-dev \
