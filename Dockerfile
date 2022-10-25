@@ -1,7 +1,7 @@
 FROM alpine:3.16
 
 
-ENV TENGINE_VERSION 2.3.3
+ENV TENGINE_VERSION 2.3.4
 
 # nginx: https://git.io/vSIyj
 
@@ -126,7 +126,8 @@ RUN     addgroup -S nginx \
         # Bring in tzdata so users could set the timezones through the environment
         # variables
         && apk add --no-cache tzdata \
-        \
+        # Bring in curl and ca-certificates to make registering on DNS SD easier
+        && apk add --no-cache curl ca-certificates \
         # forward request and error logs to docker log collector
         && ln -sf /dev/stdout /var/log/nginx/access.log \
         && ln -sf /dev/stderr /var/log/nginx/error.log
