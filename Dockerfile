@@ -1,7 +1,7 @@
-FROM alpine:3.16
+FROM alpine:3.17
 
 
-ENV TENGINE_VERSION 2.3.4
+ENV TENGINE_VERSION 2.4.0
 
 # nginx: https://git.io/vSIyj
 
