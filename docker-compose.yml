@@ -3,7 +3,7 @@ version: "3.8"
 
 services:
   tengine-http:
-    image: axizdkr/tengine:2.4.1
+    image: axizdkr/tengine:3.0.0.
     container_name: tengine-http
     restart: always
     ports:
