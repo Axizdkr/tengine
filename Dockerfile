@@ -1,7 +1,7 @@
-FROM alpine:3.17
+FROM alpine:3.18
 
 
-ENV TENGINE_VERSION 2.4.0
+ENV TENGINE_VERSION 2.4.1
 
 # nginx: https://git.io/vSIyj
 
@@ -53,7 +53,7 @@ ENV CONFIG "\
         --with-file-aio \
         --with-http_v2_module \
         --add-module=modules/ngx_http_upstream_check_module \
-        --add-module=modules/headers-more-nginx-module-0.33 \
+        --add-module=modules/headers-more-nginx-module-0.34 \
 	--add-module=modules/ngx_http_upstream_session_sticky_module \
         "
 RUN     addgroup -S nginx \
@@ -76,7 +76,7 @@ RUN     addgroup -S nginx \
         && tar -zxC /usr/src -f tengine.tar.gz \
         && rm tengine.tar.gz \
         && cd /usr/src/tengine-$TENGINE_VERSION \
-        && curl -L "https://github.com/openresty/headers-more-nginx-module/archive/v0.33.tar.gz" -o more.tar.gz \
+        && curl -L "https://github.com/openresty/headers-more-nginx-module/archive/v0.34.tar.gz" -o more.tar.gz \
         && tar -zxC /usr/src/tengine-$TENGINE_VERSION/modules -f more.tar.gz \
 	&& rm  more.tar.gz \
 	&& ls -l /usr/src/tengine-$TENGINE_VERSION/modules \
